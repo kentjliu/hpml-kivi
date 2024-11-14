@@ -20,7 +20,7 @@ model = LlamaForCausalLM.from_pretrained(
     config=config,
     # cache_dir=CACHE_DIR,
     # low_cpu_mem_usage=True,
-    torch_dtype=torch.int8,
+    torch_dtype=torch.bfloat16,
     device_map='auto',
     token=MY_TOKEN
 ).cuda()
