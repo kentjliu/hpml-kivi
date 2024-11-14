@@ -10,6 +10,7 @@ MODEL_PATH = 'meta-llama/Llama-2-7b-hf' # lmsys/vicuna-7b-v1.5-16k
 config = LlamaConfig.from_pretrained(MODEL_PATH)
 config.use_flash = True  # Use flash-attention if supported for long context inference
 CACHE_DIR = "/scratch/cached_model"
+MY_TOKEN = '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'
 
 
 # Initialize the base LLaMA model
@@ -19,7 +20,8 @@ model = LlamaForCausalLM.from_pretrained(
     # cache_dir=CACHE_DIR,
     # low_cpu_mem_usage=True,
     torch_dtype=torch.int8,
-    device_map='auto'
+    device_map='auto',
+    token=MY_TOKEN
 ).cuda()
 
 # Load the tokenizer
