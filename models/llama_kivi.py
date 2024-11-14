@@ -10,7 +10,7 @@ Inspired from KIVI paper
 
 import math
 import warnings
-from typing import List, Optiona, Tuple
+from typing import List, Optional, Tuple
 
 import torch
 from torch import nn 
