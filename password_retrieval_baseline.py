@@ -5,24 +5,26 @@ import json
 from transformers import LlamaForCausalLM, LlamaConfig, AutoTokenizer # need pip install transformers==4.33.0
 from datasets import load_dataset
 
+MODEL_PATH = 'meta-llama/Llama-2-7b-hf' # lmsys/vicuna-7b-v1.5-16k
 # Load the configuration for the base LLaMA model
-config = LlamaConfig.from_pretrained("lmsys/vicuna-7b-v1.5-16k")
+config = LlamaConfig.from_pretrained(MODEL_PATH)
 config.use_flash = True  # Use flash-attention if supported for long context inference
 CACHE_DIR = "/scratch/cached_model"
 
+
 # Initialize the base LLaMA model
 model = LlamaForCausalLM.from_pretrained(
-    pretrained_model_name_or_path="lmsys/vicuna-7b-v1.5-16k",
+    pretrained_model_name_or_path=MODEL_PATH,
     config=config,
     # cache_dir=CACHE_DIR,
     # low_cpu_mem_usage=True,
-    torch_dtype=torch.bfloat16,
+    torch_dtype=torch.int8,
     device_map='auto'
 ).cuda()
 
 # Load the tokenizer
 enc = AutoTokenizer.from_pretrained(
-    'lmsys/vicuna-7b-v1.5-16k', 
+    MODEL_PATH, 
     use_fast=False, 
     trust_remote_code=True, 
     tokenizer_type='llama'
