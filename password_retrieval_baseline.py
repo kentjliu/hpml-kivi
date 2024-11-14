@@ -2,7 +2,7 @@ import warnings
 warnings.filterwarnings("ignore")
 import torch
 import json
-from transformers import LlamaForCausalLM, LlamaConfig, AutoTokenizer
+from transformers import LlamaForCausalLM, LlamaConfig, AutoTokenizer # need pip install transformers==4.33.0
 from datasets import load_dataset
 
 # Load the configuration for the base LLaMA model
@@ -15,8 +15,9 @@ model = LlamaForCausalLM.from_pretrained(
     pretrained_model_name_or_path="lmsys/vicuna-7b-v1.5-16k",
     config=config,
     # cache_dir=CACHE_DIR,
-    low_cpu_mem_usage=True,
-    torch_dtype=torch.float16,
+    # low_cpu_mem_usage=True,
+    torch_dtype=torch.int8,
+    device_map='auto'
 ).cuda()
 
 # Load the tokenizer
