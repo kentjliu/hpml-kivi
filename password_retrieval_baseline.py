@@ -10,7 +10,8 @@ MODEL_PATH = 'meta-llama/Llama-2-7b-hf' # lmsys/vicuna-7b-v1.5-16k
 config = LlamaConfig.from_pretrained(MODEL_PATH)
 config.use_flash = True  # Use flash-attention if supported for long context inference
 CACHE_DIR = "/scratch/cached_model"
-MY_TOKEN = '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'
+MY_TOKEN = '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' # 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
+
 
 
 # Initialize the base LLaMA model
