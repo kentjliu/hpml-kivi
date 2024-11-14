@@ -14,7 +14,7 @@ CACHE_DIR = "/scratch/cached_model"
 model = LlamaForCausalLM.from_pretrained(
     pretrained_model_name_or_path="lmsys/vicuna-7b-v1.5-16k",
     config=config,
-    cache_dir=CACHE_DIR,
+    # cache_dir=CACHE_DIR,
     low_cpu_mem_usage=True,
     torch_dtype=torch.float16,
 ).cuda()
